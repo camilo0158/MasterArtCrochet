@@ -7,13 +7,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MsalInterceptor, MsalModule } from '@azure/msal-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

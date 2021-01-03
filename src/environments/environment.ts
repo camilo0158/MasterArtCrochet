@@ -6,5 +6,8 @@ export const environment = {
     authority: "https://login.microsoftonline.com/common",
     redirectUri: "http://localhost:4200/",
     cacheLocation: "localStorage",
+  },
+  masterAppApi:{
+    baseApi: "http://masterappcrochet.azurewebsites.net/api/"
   }
 };

@@ -1,0 +1,73 @@
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+    <div class="container">
+      
+      <div class="section-title" data-aos="fade-up">
+        <h2>Product</h2>
+      </div>
+
+      <div class="row no-gutters justify-content-center" data-aos="fade-up">
+      </div>
+
+      <div class="row mt-5 justify-content-center" data-aos="fade-up">
+        <div class="col-lg-10">
+          <form [formGroup]="formProduct" autocomplete="off" class="php-email-form">
+            <div class="form-group">
+              <input type="text" class="form-control"  placeholder="Description" formControlName="Description" />
+              <div *ngIf="invalidDescriptionRequired" class="validate" style="display: block;">Please enter a valid description</div>
+              <div *ngIf="invalidDescriptionMinLength" class="validate" style="display: block;">Please enter at least 4 chars</div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6 form-group">
+                <select class="form-control" placeholder="Category" formControlName="Category" [value]="0">
+                  <option *ngFor="let category of categories" [value]="category.Value">
+                    {{ category.Name }}
+                  </option>
+                </select>
+                <div class="validate"></div>
+              </div>
+              <div class="col-md-6 form-group">
+                <select class="form-control" placeholder="Size" formControlName="Size">
+                  <option *ngFor="let size of sizes" [value]="size.Value">
+                    {{ size.Name }}
+                  </option>
+                </select>
+                <div class="validate"></div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-6 form-group">
+                <input appNumbersOnly type="text" class="form-control" placeholder="Quantity" formControlName="Quantity" />
+                <div *ngIf="invalidQuantityRequired" class="validate" style="display: block;">Please enter a valid quantity</div>
+              </div>
+              <div class="col-md-6 form-group">
+                <input appNumbersOnly type="text" class="form-control" placeholder="Price" formControlName="Price" />
+                <div *ngIf="invalidPriceRequired" class="validate" style="display: block;">Please enter a valid price</div>
+              </div>
+            </div>      
+            <div class="form-row">
+              <div class="col-md-6 form-group">
+                <select class="form-control" placeholder="Color" formControlName="Color">
+                  <option *ngFor="let color of colors" [value]="color.Value">
+                    {{ color.Name }}
+                  </option>
+                </select>
+                <div class="validate"></div>
+              </div>
+              
+            </div>        
+            <div class="mb-3">              
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="contact" (click)="save() ">Create Product</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->

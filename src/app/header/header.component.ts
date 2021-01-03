@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit {
     let loginFailureSubscription: Subscription;
 
     this.oatuhService.initializeOAuthService();
+    this.loggedIn = this.oatuhService.loggedIn;
+    
     loginSuccessSubscription = this.broadcastService.subscribe(
       'msal:loginSuccess',
       () => {

@@ -9,5 +9,8 @@ export const environment = {
   },
   masterAppApi:{
     baseApi: "http://masterappcrochet.azurewebsites.net/api/"
+  },
+  masterAppBlobStorageApi:{
+    baseApi: "http://masterappcrochetstorage.azurewebsites.net/api"
   }
 };

@@ -3,14 +3,15 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { MsalInterceptor, MsalModule } from '@azure/msal-angular';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from './../environments/environment';
-import { NumbersDirective } from './app-core/directive/numbers.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { ProductModule } from './modules/product/product.module';
+import { SharedModule } from './shared/shared.module';
 
 const isIE =
   window.navigator.userAgent.indexOf('MSIE ') > -1 ||
@@ -30,6 +31,7 @@ const isIE =
     HttpClientModule,
     ProductModule,
     ReactiveFormsModule,
+    SharedModule,
     MsalModule.forRoot(
       {
         auth: {
@@ -51,6 +53,7 @@ const isIE =
         extraQueryParameters: {},
       }
     ),
+    NgbModule,
   ],
   providers: [
     {

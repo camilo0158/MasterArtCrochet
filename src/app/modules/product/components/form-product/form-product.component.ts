@@ -1,10 +1,12 @@
-import { OauthAccessService } from 'src/app/app-core/core/services/oauth.access.service';
-import { Product } from './../../models/product';
-import { productConstant } from './../../product.constant';
-import { OptionSet } from './../../../../utilities/models/optionSet';
+import { LoadFilesComponent } from './../../../../shared/components/load-files/load-files.component';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OauthAccessService } from 'src/app/app-core/core/services/oauth.access.service';
 import { ProductService } from '../../services/product.service';
+import { OptionSet } from './../../../../utilities/models/optionSet';
+import { Product } from './../../models/product';
+import { productConstant } from './../../product.constant';
 
 @Component({
   selector: 'app-form-product',
@@ -20,11 +22,17 @@ export class FormProductComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
-    private auth: OauthAccessService
+    private auth: OauthAccessService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
     this.auth.getToken();
+    this.initializeForm();
+    this.initializeOptions();
+  }
+
+  private initializeForm() {
     this.formProduct = this.formBuilder.group({
       Category: ['', Validators.required],
       Description: [
@@ -36,7 +44,6 @@ export class FormProductComponent implements OnInit {
       Quantity: ['', Validators.required],
       Price: ['', Validators.required],
     });
-    this.initializeOptions();
   }
 
   get invalidDescriptionRequired() {
@@ -97,7 +104,7 @@ export class FormProductComponent implements OnInit {
       Size: 0,
       Quantity: '',
       Price: '',
-    });    
+    });
   }
 
   private formIsValid(form: FormGroup): boolean {
@@ -113,14 +120,18 @@ export class FormProductComponent implements OnInit {
   }
 
   save() {
-    const validForm = this.formIsValid(this.formProduct);
-    if (validForm) {
-      const product = this.mapProduct();
-      this.productService.createProduct(product).subscribe((productCreate) => {
-        console.log(productCreate);
-        this.clearForm();
-      });
-    }
+    // const validForm = this.formIsValid(this.formProduct);
+    // if (validForm) {
+    //   const product = this.mapProduct();
+    //   this.productService.createProduct(product).subscribe((productCreate) => {
+    //     console.log(productCreate);
+    //     // this.clearForm();
+    //   });
+    // }
+    this.modalService.open(LoadFilesComponent, {
+      size: 'md',
+      backdrop: 'static',
+    });
   }
 
   mapProduct() {

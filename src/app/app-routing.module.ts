@@ -18,6 +18,13 @@ const routes: Routes = [
         (m) => m.ProductRoutingModule
       )    
   },
+  {
+    path: 'portfolio',    
+    loadChildren: () => 
+      import('./modules/portfolio/portfolio-routing.module').then(
+        (m) => m.PortfolioRoutingModule
+      )    
+  },
 ];
 
 @NgModule({

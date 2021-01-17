@@ -1,0 +1,17 @@
+{
+  "hosting": [
+    {
+      "app": {
+        "project": "MasterArtCrochet",
+        "target": "build",
+        "configuration": "production",
+        "path": "dist/MasterArtCrochet"
+      },
+      "azureHosting": {
+        "subscription": "071ddfbb-ed06-467f-a06a-2796a42110d9",
+        "resourceGroupName": "MasterArtCrochet-static-deploy",
+        "account": "masterartcrochetstatic"
+      }
+    }
+  ]
+}

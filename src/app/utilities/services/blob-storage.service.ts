@@ -9,9 +9,9 @@ import { environment } from 'src/environments/environment';
 export class BlobStorageService {
   constructor(private http: HttpClient) {}
 
-  loadFile(files: any): Observable<any> {
+  loadFile(files: any, idProduct: string): Observable<any> {
     return this.http.post<any>(
-      `${environment.masterAppBlobStorageApi.baseApi}/Image`,
+      `${environment.masterAppBlobStorageApi.baseApi}/Image?idProduct=${idProduct}`,
       files
     );
   }

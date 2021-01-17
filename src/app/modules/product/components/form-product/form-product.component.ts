@@ -34,6 +34,7 @@ export class FormProductComponent implements OnInit {
 
   private initializeForm() {
     this.formProduct = this.formBuilder.group({
+      Name: ['', [Validators.required, Validators.minLength(4)]],
       Category: ['', Validators.required],
       Description: [
         '',
@@ -56,6 +57,16 @@ export class FormProductComponent implements OnInit {
     );
   }
 
+  get invalidNameRequired() {
+    return (
+      this.formProduct &&
+      this.formProduct.get('Name').invalid &&
+      this.formProduct.get('Name').dirty &&
+      this.formProduct.get('Name').errors &&
+      this.formProduct.get('Name').errors.required
+    );
+  }
+
   get invalidDescriptionMinLength() {
     return (
       this.formProduct &&
@@ -63,6 +74,16 @@ export class FormProductComponent implements OnInit {
       this.formProduct.get('Description').dirty &&
       this.formProduct.get('Description').errors &&
       this.formProduct.get('Description').errors.minlength
+    );
+  }
+
+  get invalidNameMinLength() {
+    return (
+      this.formProduct &&
+      this.formProduct.get('Name').invalid &&
+      this.formProduct.get('Name').dirty &&
+      this.formProduct.get('Name').errors &&
+      this.formProduct.get('Name').errors.minlength
     );
   }
 
@@ -98,6 +119,7 @@ export class FormProductComponent implements OnInit {
 
   clearForm() {
     this.formProduct.setValue({
+      Name: '',
       Category: 0,
       Description: '',
       Color: 0,
@@ -111,7 +133,7 @@ export class FormProductComponent implements OnInit {
     if (form.invalid) {
       Object.values(form.controls).forEach((control) => {
         if (control.invalid) {
-          control.markAsTouched();
+          control.markAsDirty();
         }
       });
       return false;
@@ -120,22 +142,21 @@ export class FormProductComponent implements OnInit {
   }
 
   save() {
-    // const validForm = this.formIsValid(this.formProduct);
-    // if (validForm) {
-    //   const product = this.mapProduct();
-    //   this.productService.createProduct(product).subscribe((productCreate) => {
-    //     console.log(productCreate);
-    //     // this.clearForm();
-    //   });
-    // }
-    this.modalService.open(LoadFilesComponent, {
-      size: 'md',
-      backdrop: 'static',
-    });
+    const validForm = this.formIsValid(this.formProduct);
+    if (validForm) {
+      const product = this.mapProduct();
+
+      const modal = this.modalService.open(LoadFilesComponent, {
+        size: 'md',
+        backdrop: 'static',
+      });
+      modal.componentInstance.product = product;
+    }
   }
 
   mapProduct() {
     const product = new Product();
+    product.Name = this.formProduct.get('Name').value;
     product.Description = this.formProduct.get('Description').value;
     product.Category = parseInt(this.formProduct.get('Category').value);
     product.Size = parseInt(this.formProduct.get('Size').value);

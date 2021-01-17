@@ -9,6 +9,8 @@ import { OauthAccessService } from 'src/app/app-core/core/services/oauth.access.
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
+  products: Product[] = [];
+
   constructor(
     private productService: ProductService,
     private auth: OauthAccessService
@@ -19,6 +21,7 @@ export class ProductComponent implements OnInit {
 
     this.productService.getProducts().subscribe((products) => {
       console.log(products);
+      this.products = products;
     });
   }
 }

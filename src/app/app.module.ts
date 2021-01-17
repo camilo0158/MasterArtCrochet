@@ -1,3 +1,4 @@
+import { PortfolioModule } from './modules/portfolio/portfolio.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -30,6 +31,7 @@ const isIE =
     AppRoutingModule,
     HttpClientModule,
     ProductModule,
+    PortfolioModule,
     ReactiveFormsModule,
     SharedModule,
     MsalModule.forRoot(

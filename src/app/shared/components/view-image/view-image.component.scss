@@ -1,0 +1,22 @@
+body {
+    background: #0CE9AF;
+    display: flex;
+    flex-direction: column;
+    font-family: Lato;
+    height: 100%;
+    margin: auto;
+    text-shadow: 0 0px 2px rgba(245, 245, 245, .25);
+  }
+  
+  #container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .75);
+    margin: auto;
+    width: auto;
+  }
+
+  img {
+    max-width: 120%;
+    vertical-align: middle;
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+  }

@@ -158,7 +158,7 @@ export class FormProductComponent implements OnInit {
     const product = new Product();
     product.Name = this.formProduct.get('Name').value;
     product.Description = this.formProduct.get('Description').value;
-    product.Category = parseInt(this.formProduct.get('Category').value);
+    product.category = parseInt(this.formProduct.get('Category').value);
     product.Size = parseInt(this.formProduct.get('Size').value);
     product.Color = parseInt(this.formProduct.get('Color').value);
     product.Price = parseInt(this.formProduct.get('Price').value);
